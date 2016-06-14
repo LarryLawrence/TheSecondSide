@@ -5,8 +5,8 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.drunkpiano.thesecondside.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.drunkpiano.thesecondside.MainActivity">
     <!--顶部Bar-->
     <LinearLayout
         android:id="@+id/top_bar"
@@ -46,21 +46,20 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:background="@color/colorAccent"
-            android:paddingRight="10dp"
-            android:gravity="right">
+            android:gravity="right"
+            android:paddingRight="10dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:clickable="true"
                 android:paddingRight="10dp"
-                android:src="@drawable/ic_search_white_24dp"
-                />
+                android:src="@drawable/ic_search_white_24dp" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_menu_white_24dp"
-                />
+                android:src="@drawable/ic_menu_white_24dp" />
         </LinearLayout>
     </LinearLayout>
     <!--should be equipted with ripple effect-->
@@ -68,7 +67,7 @@
     <LinearLayout
         android:id="@+id/header_region"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:background="@color/colorPrimary"
         android:clickable="true"
         android:elevation="4dp"
@@ -150,176 +149,15 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--中部row1-->
     <LinearLayout
-        android:id="@+id/second_region"
-        android:layout_width="match_parent"
-        android:layout_height="157dp"
         android:background="#FEFEFE"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <!--MID白条-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:clickable="true"
-                android:elevation="8dp"
-                android:gravity="center"
-                android:scaleType="centerInside"
-                android:src="@drawable/jingdongdingdan" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="京东订单"
-                android:textColor="#000000" />
-        </LinearLayout>
-        <!--MID京东订单-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="36dp"
-                android:clickable="true"
-                android:elevation="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/baitiao" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="白条"
-                android:textColor="#000000" />
-        </LinearLayout>
-        <!--拍立返-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:clickable="true"
-                android:elevation="8dp"
-                android:gravity="center"
-                android:scaleType="centerInside"
-                android:src="@drawable/pailifan" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="拍立返"
-                android:textColor="#000000" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!--中部row2-->
-    <LinearLayout
-        android:id="@+id/second_region_row2"
         android:layout_width="match_parent"
-        android:layout_height="157dp"
-        android:background="#FEFEFE"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <!--MID白条-->
-        <LinearLayout
+        android:layout_height="match_parent">
+
+        <com.hankkin.library.RefreshSwipeMenuListView
+            android:id="@+id/swipe"
+            android:dividerHeight="1dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:clickable="true"
-                android:elevation="8dp"
-                android:gravity="center"
-                android:scaleType="centerInside"
-                android:src="@drawable/duobao" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="一元夺宝"
-                android:textColor="#000000" />
-        </LinearLayout>
-        <!--MID京东订单-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:clickable="true"
-                android:elevation="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/jingdongtemai" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="京东特卖"
-                android:textColor="#000000" />
-        </LinearLayout>
-        <!--拍立返-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:clickable="true"
-                android:elevation="8dp"
-                android:gravity="center"
-                android:scaleType="centerInside"
-                android:src="@drawable/more" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="更多.."
-                android:textColor="#000000" />
-        </LinearLayout>
+            android:layout_height="match_parent"/>
     </LinearLayout>
-    <!--<ImageView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:elevation="8dp"-->
-    <!--android:src="@drawable/bottom_navigation_bar"/>-->
 </LinearLayout>
