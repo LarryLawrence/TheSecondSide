@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.drunkpiano.thesecondside.MainActivity"
+    android:orientation="vertical">
+    <!--顶部Bar-->
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <!--账单-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/bill_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:paddingLeft="15dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/bills" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:text="账单" />
+        </LinearLayout>
+        <!--搜索/菜单。  (高度统一是50dp)-->
+        <LinearLayout
+            android:id="@+id/search_and_menu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/colorAccent"
+            android:paddingRight="10dp"
+            android:gravity="right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:paddingRight="10dp"
+                android:src="@drawable/ic_search_white_24dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_menu_white_24dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <!--should be equipted with ripple effect-->
+    <!--支付区-->
+    <LinearLayout
+        android:id="@+id/header_region"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!--Top Bar-->
+
+        <!--扫一扫-->
+        <LinearLayout
+            android:id="@+id/scan"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageButton4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/qrcode_btn_bg_paycode_normal_copy" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="付钱" />
+        </LinearLayout>
+        <!--零钱-->
+        <LinearLayout
+            android:id="@+id/changesss"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageButton100"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/changes_meitu_1" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="零钱" />
+        </LinearLayout>
+        <!--付钱-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageButton5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:elevation="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/home_btn_bg_scan_normal_copy" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="扫扫" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--中部row1-->
+    <LinearLayout
+        android:id="@+id/second_region"
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:background="#FEFEFE"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!--MID白条-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:clickable="true"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/jingdongdingdan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="京东订单"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <!--MID京东订单-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="36dp"
+                android:clickable="true"
+                android:elevation="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/baitiao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="白条"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <!--拍立返-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:clickable="true"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/pailifan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="拍立返"
+                android:textColor="#000000" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--中部row2-->
+    <LinearLayout
+        android:id="@+id/second_region_row2"
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:background="#FEFEFE"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!--MID白条-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:clickable="true"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/duobao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="一元夺宝"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <!--MID京东订单-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:clickable="true"
+                android:elevation="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/jingdongtemai" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="京东特卖"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <!--拍立返-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:clickable="true"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/more" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="更多.."
+                android:textColor="#000000" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:elevation="8dp"-->
+    <!--android:src="@drawable/bottom_navigation_bar"/>-->
+</LinearLayout>
