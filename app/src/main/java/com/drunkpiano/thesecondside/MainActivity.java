@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements RefreshSwipeMenuL
                 SwipeMenuItem argeeItem = new SwipeMenuItem(getApplicationContext());
                 argeeItem.setBackground(new ColorDrawable(getResources().getColor(R.color.del)));
                 argeeItem.setWidth(dp2px(80, getApplicationContext()));
-                argeeItem.setTitle("删除");
+                argeeItem.setTitle("不感兴趣");
                 argeeItem.setTitleSize(16);
                 argeeItem.setTitleColor(Color.WHITE);
                 menu.addMenuItem(argeeItem);
@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity implements RefreshSwipeMenuL
     private void initData(){
         for (int i=0;i<15;i++){
             MsgBean msgBean = new MsgBean();
-            msgBean.setName("Function"+i);
-            msgBean.setContent("你好，在么？"+i);
+            msgBean.setName("一元夺宝"+"------>"+i);
+            msgBean.setContent("搏一搏, 单车变摩托");
             msgBean.setTime("上午10:30");
             data.add(msgBean);
         }
