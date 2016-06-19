@@ -1,6 +1,7 @@
 package com.drunkpiano.thesecondside;
 
-import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -8,161 +9,223 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hankkin.library.RefreshSwipeMenuListView;
-import com.hankkin.library.SwipeMenu;
-import com.hankkin.library.SwipeMenuCreator;
-import com.hankkin.library.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RefreshSwipeMenuListView.OnRefreshListener {
+public class MainActivity extends AppCompatActivity {
 
-    private RefreshSwipeMenuListView rsmLv;
-    private List<MsgBean> data;
-    private MessageAdapter adapter;
+    private List<ApplicationInfo> mAppList;
+    private AppAdapter mAdapter;
+    private SwipeMenuListView mListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_new);
         getSupportActionBar().hide();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(Color.parseColor("#303F9F"));
-//            getWindow().setNavigationBarColor(Color.parseColor("#12122c"));
+
         }
+        mAppList = getPackageManager().getInstalledApplications(0);
+//        mAppList.add("String1");
+//        mAppList.add("String2");
+//        mAppList.add("String3");
+//        mAppList.add("String4");
+//        mAppList.add("String5");
+//        mAppList.add("String6");
 
-
-        rsmLv = (RefreshSwipeMenuListView) findViewById(R.id.swipe);
-        data = new ArrayList<>();
-
-
-        initData();
-
-        adapter = new MessageAdapter(MainActivity.this,data);
-
-        rsmLv.setAdapter(adapter);
-        rsmLv.setListViewMode(RefreshSwipeMenuListView.HEADER);
-        rsmLv.setOnRefreshListener(this);
+        mListView = (SwipeMenuListView) findViewById(R.id.new_listView);
+        mAdapter = new AppAdapter();
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(new MyItemClickLisener());
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
+
             @Override
             public void create(SwipeMenu menu) {
-                // 创建滑动选项
-                SwipeMenuItem rejectItem = new SwipeMenuItem(
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(
                         getApplicationContext());
-                // 设置选项背景
-                rejectItem.setBackground(new ColorDrawable(getResources().getColor(R.color.top)));
-                // 设置选项宽度
-                rejectItem.setWidth(dp2px(80,getApplicationContext()));
-                // 设置选项标题
-                rejectItem.setTitle("置顶");
-                // 设置选项标题
-                rejectItem.setTitleSize(16);
-                // 设置选项标题颜色
-                rejectItem.setTitleColor(Color.WHITE);
-                // 添加选项
-                menu.addMenuItem(rejectItem);
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                        0xCE)));
+                // set item width
+                openItem.setWidth(dp2px(90));
+                // set item title
+                openItem.setTitle("Open");
+                // set item title fontsize
+                openItem.setTitleSize(18);
+                // set item title font color
+                openItem.setTitleColor(Color.WHITE);
+                // add to menu
+                menu.addMenuItem(openItem);
 
-                // 创建删除选项
-                SwipeMenuItem argeeItem = new SwipeMenuItem(getApplicationContext());
-                argeeItem.setBackground(new ColorDrawable(getResources().getColor(R.color.del)));
-                argeeItem.setWidth(dp2px(80, getApplicationContext()));
-                argeeItem.setTitle("不感兴趣");
-                argeeItem.setTitleSize(16);
-                argeeItem.setTitleColor(Color.WHITE);
-                menu.addMenuItem(argeeItem);
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth(dp2px(90));
+                // set a icon
+                deleteItem.setIcon(R.drawable.drunkpiano_ic_delete);
+                // add to menu
+                menu.addMenuItem(deleteItem);
             }
         };
 
-        rsmLv.setMenuCreator(creator);
+        // set creator
+        mListView.setMenuCreator(creator);
 
-        rsmLv.setOnMenuItemClickListener(new RefreshSwipeMenuListView.OnMenuItemClickListener() {
+        mListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
-            public void onMenuItemClick(int position, SwipeMenu menu, int index) {
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
-                    case 0: //第一个选项
-                        Toast.makeText(MainActivity.this,"您点击的是置顶",Toast.LENGTH_SHORT).show();
+                    case 0:
+                        // open
                         break;
-                    case 1: //第二个选项
-                        del(position,rsmLv.getChildAt(position+1-rsmLv.getFirstVisiblePosition()));
+                    case 1:
+                        // delete
                         break;
-
                 }
+                // false : close the menu; true : not close the menu
+                return false;
             }
         });
+
+        // Right
+        mListView.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
+
+        // Left
+        mListView.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
+    }
+
+    private int dp2px(int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+                getResources().getDisplayMetrics());
     }
 
 
-    private void initData(){
-        for (int i=0;i<15;i++){
-            MsgBean msgBean = new MsgBean();
-            msgBean.setName("一元夺宝"+"------>"+i);
-            msgBean.setContent("搏一搏, 单车变摩托");
-            msgBean.setTime("上午10:30");
-            data.add(msgBean);
+    class AppAdapter extends BaseSwipListAdapter {
+
+        @Override
+        public int getCount() {
+            return mAppList.size();
+        }
+
+        @Override
+        public ApplicationInfo getItem(int position) {
+            return mAppList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = View.inflate(getApplicationContext(),
+                        R.layout.item_list_app, null);
+                new ViewHolder(convertView);
+            }
+            //获取ViewHolder
+            ViewHolder holder = (ViewHolder) convertView.getTag();
+            if (position == 0) {
+                holder.iv_icon.setImageDrawable(getResources().getDrawable(R.drawable.drunkpiano_baitiao));
+                holder.tv_name.setText("这是一封信");
+            } if (position == 1) {
+                holder.iv_icon.setImageDrawable(getResources().getDrawable(R.drawable.corner_logo));
+                holder.tv_name.setText("你好,京东钱包");
+            } if (position == 2) {
+                holder.iv_icon.setImageDrawable(getResources().getDrawable(R.drawable.drunkpiano_duobao));
+                holder.tv_name.setText("你好,京东钱包");
+            } if (position == 3) {
+                holder.iv_icon.setImageDrawable(getResources().getDrawable(R.drawable.drunkpiano_baitiao));
+                holder.tv_name.setText("你好,京东钱包");
+            } if (position == 4) {
+                holder.iv_icon.setImageDrawable(getResources().getDrawable(R.drawable.drunkpiano_duobao));
+                holder.tv_name.setText("你好,京东钱包");
+            } if (position == 5) {
+                holder.iv_icon.setImageDrawable(getResources().getDrawable(R.drawable.drunkpiano_baitiao));
+                holder.tv_name.setText("你好,京东钱包");
+            }
+// else {
+//                //这个else是position非0的情况
+//
+//                //按照position获取安装程序的item,准备从中读取Icon和Label
+//                ApplicationInfo item = getItem(position);
+//                holder.iv_icon.setImageDrawable(item.loadIcon(getPackageManager()));
+//                holder.tv_name.setText(item.loadLabel(getPackageManager()));
+//
+//
+//                holder.iv_icon.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(MainActivity.this, "iv_icon_click", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                holder.tv_name.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(MainActivity.this, "iv_icon_click", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+
+
+            return convertView;
+        }
+
+        class ViewHolder {
+            ImageView iv_icon;
+            TextView tv_name;
+
+            public ViewHolder(View view) {
+                iv_icon = (ImageView) view.findViewById(R.id.iv_icon);
+                tv_name = (TextView) view.findViewById(R.id.tv_name);
+                view.setTag(this);
+            }
+        }
+
+        @Override
+        public boolean getSwipEnableByPosition(int position) {
+//            if(position % 2 == 0){
+//                return false;
+//            }
+            return true;
         }
     }
 
-    /**
-     * 删除item动画
-     * @param index
-     * @param v
-     */
-    private void del(final int index, View v){
-        final Animation animation = (Animation) AnimationUtils.loadAnimation(v.getContext(), R.anim.list_anim);
-        animation.setAnimationListener(new Animation.AnimationListener() {
-            public void onAnimationStart(Animation animation) {}
-            public void onAnimationRepeat(Animation animation) {}
-            public void onAnimationEnd(Animation animation) {
-                data.remove(index);
-                adapter.notifyDataSetChanged();
-                animation.cancel();
+
+    //item点击事件
+    private class MyItemClickLisener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if (position == 0) {
+//                getFragmentManager().beginTransaction().replace(R.id.activity_main_container,new LetterFragment()).commit();
+                Toast.makeText(MainActivity.this, "这是一封信", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,LetterActivity.class);
+                startActivity(intent);
             }
-        });
-
-        v.startAnimation(animation);
+        }
     }
 
-
-    @Override
-    public void onRefresh() {
-        rsmLv.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                rsmLv.complete();
-                Toast.makeText(MainActivity.this,"已完成",Toast.LENGTH_SHORT).show();
-            }
-        },2000);
-    }
-
-    @Override
-    public void onLoadMore() {
-        rsmLv.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                for (int i=0;i<10;i++){
-                    MsgBean msgBean = new MsgBean();
-                    msgBean.setName("张某某"+i);
-                    msgBean.setContent("你好，在么？"+i);
-                    msgBean.setTime("上午10:30");
-                    data.add(msgBean);
-                }
-                rsmLv.complete();
-                adapter.notifyDataSetChanged();
-            }
-        },2000);
-
-    }
-
-    public  int dp2px(int dp, Context context) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
-                context.getResources().getDisplayMetrics());
-    }
 }
