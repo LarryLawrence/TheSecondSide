@@ -149,7 +149,7 @@
 
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/new_listView"
-        android:background="#CCCCCC"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

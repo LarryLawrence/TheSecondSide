@@ -1,31 +1,29 @@
 package com.drunkpiano.thesecondside;
 
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<ApplicationInfo> mAppList;
+    private List<String> mAppList;
     private AppAdapter mAdapter;
     private SwipeMenuListView mListView;
 
@@ -35,23 +33,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_new);
         getSupportActionBar().hide();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(Color.parseColor("#303F9F"));
-
-        }
-        mAppList = getPackageManager().getInstalledApplications(0);
-//        mAppList.add("String1");
-//        mAppList.add("String2");
-//        mAppList.add("String3");
-//        mAppList.add("String4");
-//        mAppList.add("String5");
+        //STATUS BAR COLOR
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            getWindow().setStatusBarColor(Color.parseColor("#303F9F"));
+//
+//        }
+//        mAppList = getPackageManager().getInstalledApplications(0);
+        mAppList= new ArrayList<String>() {
+        };
+        mAppList.add("String1");
+        mAppList.add("String2");
+        mAppList.add("String3");
+        mAppList.add("String4");
+        mAppList.add("String5");
 //        mAppList.add("String6");
 
         mListView = (SwipeMenuListView) findViewById(R.id.new_listView);
         mAdapter = new AppAdapter();
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new MyItemClickLisener());
+//        mListView.setDivider(new ColorDrawable(Color.LTGRAY));
+        mListView.setDivider(new ColorDrawable(0xFFEEEEEE));
+        mListView.setDividerHeight(24);
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 // set item width
                 openItem.setWidth(dp2px(90));
                 // set item title
-                openItem.setTitle("Open");
+                openItem.setTitle("喜欢");
                 // set item title fontsize
                 openItem.setTitleSize(18);
                 // set item title font color
@@ -83,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 // set item width
                 deleteItem.setWidth(dp2px(90));
                 // set a icon
-                deleteItem.setIcon(R.drawable.drunkpiano_ic_delete);
+                deleteItem.setIcon(R.drawable.ic_highlight_off_white_24dp);
+//                deleteItem.setTitle("不感兴趣");
                 // add to menu
                 menu.addMenuItem(deleteItem);
             }
@@ -129,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public ApplicationInfo getItem(int position) {
+        public String getItem(int position) {
             return mAppList.get(position);
         }
 
@@ -220,12 +225,19 @@ public class MainActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (position == 0) {
 //                getFragmentManager().beginTransaction().replace(R.id.activity_main_container,new LetterFragment()).commit();
-                Toast.makeText(MainActivity.this, "这是一封信", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "这是一封信", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this,LetterActivity.class);
+                intent.setClass(getApplicationContext(),LetterActivity.class);
                 startActivity(intent);
             }
         }
+    }
+    public abstract class BaseSwipListAdapter extends BaseAdapter {
+
+        public boolean getSwipEnableByPosition(int position){
+            return true;
+        }
+
     }
 
 }

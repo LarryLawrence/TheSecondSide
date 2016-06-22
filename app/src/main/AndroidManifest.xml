@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -15,7 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LetterActivity"></activity>
+        <!--//信Activity-->
+        <activity android:name=".LetterActivity">
+            <!--没BAR,黑色主题android:theme="@style/Theme.AppCompat.NoActionBar"-->
+            <!--没BAR,白色主题android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
+            <!--没BAR,白色主题android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"-->
+        </activity>
     </application>
+
 
 </manifest>
