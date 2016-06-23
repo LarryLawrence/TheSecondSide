@@ -71,7 +71,6 @@
         android:layout_height="100dp"
         android:background="@color/colorPrimary"
         android:clickable="true"
-        android:elevation="10dp"
         android:gravity="center"
         android:orientation="horizontal">
         <!--Top Bar-->
@@ -147,42 +146,244 @@
                 android:text="HOT!" />
         </LinearLayout>
     </LinearLayout>
+    <!--四个按钮-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+        <!--第一个按钮-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drunkpiano_jingdongtemai" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="京东特卖"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+        <!--第二个按钮-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drunkpiano_baitiao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="白条"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+        <!--第3个按钮-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drunkpiano_pailifan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="拍立返"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+        <!--第4个按钮-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/more" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="更多.."
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--卡片上方的文字和按钮-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="6dp"
+            android:text="热门内容"
+            android:textColor="@android:color/black" />
+        <!--两个按钮-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="#EDEEEF"
+            android:gravity="right">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="right"
+                android:background="#4e802b"
+                android:text="换一波" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="10dp"
+                android:background="#4e802b"
+                android:text="更多" />
+        </LinearLayout>
+    </LinearLayout>
+
     <!--三个卡片-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
         <!--第一个卡片-->
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:background="#CCCCCC"
+            card_view:cardBackgroundColor="@android:color/white"
             card_view:cardCornerRadius="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:background="#CCCCCC"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:layout_margin="8dp"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/drunkpiano_changqing" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="去超市拍下购物小票， 立刻返现" />
+                    android:paddingTop="8dp"
+                    android:text="女神请你喝畅轻"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="去超市拍下购物小票，立刻返现"
+                    android:textColor="#8b8b8b" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingTop="8dp"
+                    android:text="拍立返"
+                    android:textColor="#4e802b" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
         <!--第二张卡片-->
         <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            card_view:cardBackgroundColor="@android:color/white"
+            card_view:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/drunkpiano_watermelon_green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:text="女神请你喝畅轻"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="去超市拍下购物小票，立刻返现"
+                    android:textColor="#8b8b8b" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingTop="8dp"
+                    android:text="京东到家"
+                    android:textColor="#4e802b" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <!--第三张卡片-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/card2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -193,29 +394,37 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/drunkpiano_watermelon_green" />
+                    android:src="@drawable/durnkpiano_watermelon_blue" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:textColor="#000000"
-                    android:text="女神请你喝畅轻" />
+                    android:paddingTop="8dp"
+                    android:text="女神请你喝畅轻"
+                    android:textColor="#000000" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="去超市拍下购物小票，立刻返现"
+                    android:textColor="#8b8b8b" />
 
-                    android:textColor="#8b8b8b"
-                    android:text="去超市拍下购物小票，立刻返现" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingTop="8dp"
+                    android:text="京东超市"
+                    android:textColor="#4e802b" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

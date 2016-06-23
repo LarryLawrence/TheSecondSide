@@ -227,6 +227,11 @@ public class MainActivity extends AppCompatActivity {
 //                getFragmentManager().beginTransaction().replace(R.id.activity_main_container,new LetterFragment()).commit();
 //                Toast.makeText(MainActivity.this, "这是一封信", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
+                intent.setClass(getApplicationContext(),RealLetterActivity.class);
+                startActivity(intent);
+            }
+            if (position == 1) {
+                Intent intent = new Intent();
                 intent.setClass(getApplicationContext(),LetterActivity.class);
                 startActivity(intent);
             }
